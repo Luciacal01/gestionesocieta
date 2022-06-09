@@ -17,6 +17,4 @@ public interface SocietaService {
 	public void rimuovi(Societa societaInstance);
 	
 	public List<Societa> findByExample(Societa example);
-	
-	public List<Societa> findByExample2(Societa example);
 }

@@ -55,10 +55,4 @@ public class SocietaServiceImpl implements SocietaService {
 		return (List<Societa>) societaRepository.findAll(Example.of(example,matcher));
 	}
 
-	@Override
-	public List<Societa> findByExample2(Societa example) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

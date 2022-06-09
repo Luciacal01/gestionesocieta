@@ -23,6 +23,7 @@ public class GestionesocietaApplication implements CommandLineRunner {
 		//batteriaDiTestService.testInserisciSocieta();
 		batteriaDiTestService.testInserisciDipendente();
 		batteriaDiTestService.testFindByExampleSocieta();
+		batteriaDiTestService.testRimuoviSocieta();
 		System.out.println("Fine");
 	}
 

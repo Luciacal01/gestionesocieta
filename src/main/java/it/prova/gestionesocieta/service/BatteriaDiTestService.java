@@ -10,6 +10,7 @@ import javax.management.RuntimeErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.prova.gestionesocieta.Exception.SonoPresentiDipendenti;
 import it.prova.gestionesocieta.model.Dipendente;
 import it.prova.gestionesocieta.model.Societa;
 
@@ -37,7 +38,7 @@ public class BatteriaDiTestService {
 		
 		Societa societaACuiAggiungereDip= societaService.listAll().get(1);
 		if(societaACuiAggiungereDip.getId()== null) throw new RuntimeException("impossibile aggiungere dipendente non ci sono società");
-		Dipendente dipendente = new Dipendente("Cris "+ nowInMillisecondi, "PArkle " +nowInMillisecondi, new SimpleDateFormat("dd-MM-yyyy").parse("24-05-1999"), 54000);
+		Dipendente dipendente = new Dipendente("Veronica "+ nowInMillisecondi, "Cortina " +nowInMillisecondi, new SimpleDateFormat("dd-MM-yyyy").parse("23-07-2004"), 8000);
 		dipendente.setSocieta(societaACuiAggiungereDip);
 		dipendenteService.inserisciNuovo(dipendente);
 		if(dipendente.getId()==null && dipendente.getId() <1) throw new RuntimeException("testInserisciDipendente failled");
@@ -56,7 +57,14 @@ public class BatteriaDiTestService {
 		if(trovata.size()!=1) throw new RuntimeException("Test Failed: società non trovata");
 		System.out.println(".......TestFindByExample terminato.......");
 		
-		
-		
+	}
+	
+	public void testRimuoviSocieta() throws ParseException {
+		System.out.println("........TestRimuoviSocieta..........");
+		Societa societaI= new Societa("Calabria s.p.a.", "via dei mille, 980 ", new SimpleDateFormat("dd-MM-yyyy").parse("31-10-1888") );
+		societaService.inserisciNuovo(societaI);
+		if(societaI.getDipendenti().size()!=0) throw new SonoPresentiDipendenti("Test Failed: sono ancora associati dei dipendenti");
+		societaService.rimuovi(societaI);
+		System.out.println(".......testRimuoviSocieta terminato........");
 	}
 }
