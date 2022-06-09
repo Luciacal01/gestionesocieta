@@ -17,6 +17,4 @@ public interface DipendenteService {
 	
 	public List<Dipendente> findByExample(Dipendente example);
 	
-	public List<Dipendente> findByExample2(Dipendente example);
-	
 }

@@ -27,7 +27,7 @@ public class Societa {
 	private String indirizzo;
 	@Column(name="dataFondazione")
 	private Date dataFondazione;
-	@OneToMany(fetch= FetchType.LAZY, mappedBy = "dipendente")
+	@OneToMany(fetch= FetchType.LAZY, mappedBy = "societa")
 	private Set<Dipendente> dipendenti= new HashSet<Dipendente>();
 	
 	public Societa() {
