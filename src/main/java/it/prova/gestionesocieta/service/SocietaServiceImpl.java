@@ -55,4 +55,9 @@ public class SocietaServiceImpl implements SocietaService {
 		return (List<Societa>) societaRepository.findAll(Example.of(example,matcher));
 	}
 
+	@Override
+	public List<Societa> CercatutteLeSocietaConDipendentiCheHannoRedditoAnnuoLordopiùalto(int valore) {
+		return societaRepository.findAllDistinctByDipendenti_RedditoAnnuoLordoGreaterThan(valore);
+	}
+
 }

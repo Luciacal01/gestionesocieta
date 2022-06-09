@@ -87,6 +87,16 @@ public class BatteriaDiTestService {
 		
 		System.out.println("..........TestModificaDipendente fine...........");
 	}
+	
+	public void testCercaSocietaConDipendetiConRALMaggioreDi() {
+		System.out.println("......... testCercaSocietaConDipendetiConRALMaggioreDi inizio......");
+		
+		List<Societa> societa= societaService.CercatutteLeSocietaConDipendentiCheHannoRedditoAnnuoLordopiùalto(30000);
+		if(societa.size()!=4) throw new RuntimeException("Test Failled");
+		
+		System.out.println("......... testCercaSocietaConDipendetiConRALMaggioreDi fine......");
+		
+	}
 }
 /*
 Societa societa= new Societa("Gerani ", "Corso Franci, 980 ", new SimpleDateFormat("dd-MM-yyyy").parse("31-10-2009") );
