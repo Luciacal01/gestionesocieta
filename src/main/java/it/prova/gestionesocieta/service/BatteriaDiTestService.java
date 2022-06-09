@@ -35,13 +35,28 @@ public class BatteriaDiTestService {
 	public void testInserisciDipendente() throws Exception {
 		Long nowInMillisecondi= new Date().getTime();
 		
-		Societa societaACuiAggiungereDip= societaService.listAll().get(0);
+		Societa societaACuiAggiungereDip= societaService.listAll().get(1);
 		if(societaACuiAggiungereDip.getId()== null) throw new RuntimeException("impossibile aggiungere dipendente non ci sono società");
-		Dipendente dipendente = new Dipendente("Lucia "+ nowInMillisecondi, "Giovinazzo " +nowInMillisecondi, new SimpleDateFormat("dd-MM-yyyy").parse("31-07-2001"), 46890);
+		Dipendente dipendente = new Dipendente("Cris "+ nowInMillisecondi, "PArkle " +nowInMillisecondi, new SimpleDateFormat("dd-MM-yyyy").parse("24-05-1999"), 54000);
 		dipendente.setSocieta(societaACuiAggiungereDip);
 		dipendenteService.inserisciNuovo(dipendente);
 		if(dipendente.getId()==null && dipendente.getId() <1) throw new RuntimeException("testInserisciDipendente failled");
 		
 		System.out.println("test inserimento ok");
+	}
+	
+	public void testFindByExampleSocieta() throws Exception {
+		
+		System.out.println(".......TestFindByExample inizio.......");
+		Societa societaExample= new Societa("PC s.p.a.", null, null);
+		List<Societa> trovata= societaService.findByExample(societaExample);
+		for (Societa societaItem : trovata) {
+			System.out.println(societaItem.getRagioneSociale());
+		}
+		if(trovata.size()!=1) throw new RuntimeException("Test Failed: società non trovata");
+		System.out.println(".......TestFindByExample terminato.......");
+		
+		
+		
 	}
 }

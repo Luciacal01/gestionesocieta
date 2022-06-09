@@ -20,8 +20,9 @@ public class GestionesocietaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception{
 		System.out.println("Inizio test");
 		
-		batteriaDiTestService.testInserisciSocieta();
+		//batteriaDiTestService.testInserisciSocieta();
 		batteriaDiTestService.testInserisciDipendente();
+		batteriaDiTestService.testFindByExampleSocieta();
 		System.out.println("Fine");
 	}
 
