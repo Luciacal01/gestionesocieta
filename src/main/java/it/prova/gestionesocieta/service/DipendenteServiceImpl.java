@@ -1,5 +1,6 @@
 package it.prova.gestionesocieta.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,11 @@ public class DipendenteServiceImpl implements DipendenteService {
 	public List<Dipendente> findByExample(Dipendente example) {
 		ExampleMatcher matcher= ExampleMatcher.matching().withStringMatcher(StringMatcher.CONTAINING);
 		return (List<Dipendente>) dipendenteRepository.findAll(Example.of(example, matcher));
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Dipendente cercaIlDipendentePiùAnziano() throws Exception {
+		return dipendenteRepository.findBySocietaDataAssunzioneBefore();
 	}
 }

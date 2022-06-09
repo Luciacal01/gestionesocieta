@@ -97,6 +97,26 @@ public class BatteriaDiTestService {
 		System.out.println("......... testCercaSocietaConDipendetiConRALMaggioreDi fine......");
 		
 	}
+	
+	public void testCercaIlDipendentePiùAnziano() throws Exception{
+		System.out.println(".......testCercaIlDipendentePiùAnziano inizio.......");
+		
+		Societa societa= new Societa("Gerani ", "Corso Franci, 980 ", new SimpleDateFormat("dd-MM-yyyy").parse("31-10-1750") );
+		societaService.inserisciNuovo(societa);
+		if(societa.getId()== null) throw new RuntimeException("impossibile aggiungere dipendente non ci sono società");
+		Dipendente dipendente = new Dipendente("Giuseppe ", "Verdi" , new SimpleDateFormat("dd-MM-yyyy").parse("10-02-1987"), 650000);
+		dipendente.setSocieta(societa);
+		dipendenteService.inserisciNuovo(dipendente);
+		if(dipendente.getId()==null && dipendente.getId() <1) throw new RuntimeException("testInserisciDipendente failled");
+		
+		Dipendente d= dipendenteService.cercaIlDipendentePiùAnziano();	
+		System.out.println(d.getNome());
+		
+		dipendenteService.rimuovi(dipendente);
+		societaService.rimuovi(societa);
+		
+		System.out.println(".......testCercaIlDipendentePiùAnziano fine.......");
+	}
 }
 /*
 Societa societa= new Societa("Gerani ", "Corso Franci, 980 ", new SimpleDateFormat("dd-MM-yyyy").parse("31-10-2009") );
