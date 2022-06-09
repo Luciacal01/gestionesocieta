@@ -67,4 +67,33 @@ public class BatteriaDiTestService {
 		societaService.rimuovi(societaI);
 		System.out.println(".......testRimuoviSocieta terminato........");
 	}
+	
+	public void testModificaDipendente() throws Exception {
+		System.out.println("..........TestModificaDipendente inizio...........");
+		
+		Societa societa= new Societa("Gerani ", "Corso Franci, 980 ", new SimpleDateFormat("dd-MM-yyyy").parse("31-10-2009") );
+		societaService.inserisciNuovo(societa);
+		if(societa.getId()== null) throw new RuntimeException("impossibile aggiungere dipendente non ci sono società");
+		Dipendente dipendente = new Dipendente("Giuseppe ", "Verdi" , new SimpleDateFormat("dd-MM-yyyy").parse("10-02-2009"), 650000);
+		dipendente.setSocieta(societa);
+		dipendenteService.inserisciNuovo(dipendente);
+		if(dipendente.getId()==null && dipendente.getId() <1) throw new RuntimeException("testInserisciDipendente failled");
+		
+		Dipendente dipendenteDaModificare = new Dipendente("Mario ", "Verdi" , new SimpleDateFormat("dd-MM-yyyy").parse("10-02-2009"), 650000);
+		dipendenteDaModificare.setSocieta(societa);
+		dipendenteDaModificare.setId(dipendente.getId());
+		
+		dipendenteService.aggiorna(dipendenteDaModificare);
+		
+		System.out.println("..........TestModificaDipendente fine...........");
+	}
 }
+/*
+Societa societa= new Societa("Gerani ", "Corso Franci, 980 ", new SimpleDateFormat("dd-MM-yyyy").parse("31-10-2009") );
+societaService.inserisciNuovo(societa);
+if(societa.getId()== null) throw new RuntimeException("impossibile aggiungere dipendente non ci sono società");
+Dipendente dipendente = new Dipendente("Giuseppe ", "Verdi" , new SimpleDateFormat("dd-MM-yyyy").parse("10-02-2009"), 650000);
+dipendente.setSocieta(societa);
+dipendenteService.inserisciNuovo(dipendente);
+if(dipendente.getId()==null && dipendente.getId() <1) throw new RuntimeException("testInserisciDipendente failled");
+*/
