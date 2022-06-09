@@ -21,7 +21,7 @@ public class GestionesocietaApplication implements CommandLineRunner {
 		System.out.println("Inizio test");
 		
 		batteriaDiTestService.testInserisciSocieta();
-		
+		batteriaDiTestService.testInserisciDipendente();
 		System.out.println("Fine");
 	}
 
